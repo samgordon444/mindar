@@ -4,18 +4,28 @@
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image.prod.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
+    <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
   </head>
 
   <body>
+    <video style="opacity: 0;" id="greenscreenvideo" src="example/example.mp4" loop autoplay muted></video>
     <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-entity scale="1 1.5 1"><!-- BEGIN CONTENT -->
-          
-          <a-image src="test.png"></a-image>
-
-        </a-entity><!-- END CONTENT -->
+        <a-plane 
+          material="shader: chromakey; src: #greenscreenvideo; color: 0.1 0.9 0.2" 
+          position="0 1 -10" 
+          scale="15 25 15"
+        ></a-plane>
       </a-entity>
     </a-scene>
   </body>
 </html>
+
+<!-- 
+<a-entity scale="1 1.5 1"> BEGIN CONTENT
+          
+  <a-image src="test.png"></a-image>
+
+</a-entity>
+ END CONTENT -->
