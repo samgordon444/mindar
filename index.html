@@ -6,57 +6,7 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
-    <!-- <script>
-      AFRAME.registerComponent('play-on-click', {
-        init: function() {
-            this.onClick = this.onClick.bind(this);
-        },
-        play: function() {
-            window.addEventListener('click', this.onClick);
-        },
-        pause: function() {
-            window.removeEventListener('click', this.onClick);
-        },
-        onClick: function(evt) {
-            var videoEl = this.el.getAttribute('material').src;
-            if (!videoEl) {
-                return;
-            }
-            this.el.object3D.visible = true;
-            videoEl.play();
-        }
-        });
-    </script>
-    <script>
-      AFRAME.registerComponent('hide-on-play', {
-    schema: {
-        type: 'selector'
-    },
-    init: function() {
-        this.onPlaying = this.onPlaying.bind(this);
-        this.onPause = this.onPause.bind(this);
-        this.el.object3D.visible = !this.data.playing;
-    },
-    play: function() {
-        if (this.data) {
-            this.data.addEventListener('playing', this.onPlaying);
-            this.data.addEventListener('pause', this.onPause);
-        }
-    },
-    pause: function() {
-        if (this.data) {
-            this.data.removeEventListener('playing', this.onPlaying);
-            this.data.removeEventListener('pause', this.onPause);
-        }
-    },
-    onPlaying: function(evt) {
-        this.el.object3D.visible = false;
-    },
-    onPause: function(evt) {
-        this.el.object3D.visible = true;
-    }
-});
-    </script> -->
+    
     <script type="text/javascript">
 			window.onload = function(){
 				var player = document.getElementById("greenscreenvideo");
