@@ -69,7 +69,7 @@
                 value: Click or tap to start video" hide-on-play="#greenscreenvideo">
         </a-entity> -->
       </a-camera>
-      <a-assets>
+      <!-- <a-assets>
         <video 
         id="greenscreenvideo" 
         src="example/example.mp4" 
@@ -78,7 +78,7 @@
         muted="muted"
         playsinline="playsinline"
         webkit-playsinline="webkit-playsinline"></video>
-      </a-assets>
+      </a-assets> -->
       <a-entity 
         mindar-image-target="targetIndex: 0" scale="1 1.5 1"
         material="shader: chromakey; src: #greenscreenvideo; color: 0.1 0.9 0.2" 
@@ -89,5 +89,14 @@
       ></a-entity>
         
     </a-scene>
+    <video 
+        id="greenscreenvideo" 
+        src="example/example.mp4" 
+        style="opacity:0"
+        loop
+        autoplay 
+        muted="muted"
+        playsinline="playsinline"
+        webkit-playsinline="webkit-playsinline"></video>
   </body>
 </html>
