@@ -5,8 +5,7 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
-    <script>
-      if(navigator.userAgent.match(/iPhone/i)) {
+    <!-- <script>
       AFRAME.registerComponent('play-on-click', {
         init: function() {
             this.onClick = this.onClick.bind(this);
@@ -26,10 +25,8 @@
             videoEl.play();
         }
         });
-      }
     </script>
     <script>
-      if(navigator.userAgent.match(/iPhone/i)) {
       AFRAME.registerComponent('hide-on-play', {
     schema: {
         type: 'selector'
@@ -58,20 +55,18 @@
         this.el.object3D.visible = true;
     }
 });
-      }
-
-    </script>
+    </script> -->
   </head>
 
   <body>
     <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-camera position="0 0 0" look-controls="enabled: false">
-        <a-entity position="0 0 -1.5" text="align: center;
+        <!-- <a-entity position="0 0 -1.5" text="align: center;
                 width: 6;
                 wrapCount: 100;
                 color: black;
                 value: Click or tap to start video" hide-on-play="#greenscreenvideo">
-        </a-entity>
+        </a-entity> -->
       </a-camera>
       <video style="opacity: 0;" id="greenscreenvideo" src="example/example.mp4" loop autoplay muted playsinline></video>
         <a-plane 
