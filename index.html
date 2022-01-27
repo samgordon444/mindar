@@ -6,53 +6,79 @@
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
     <script>
-      function playVideoOnClick (video) {
-        el = document.querySelector('#greenscreenvideo');
-
-        if (el) {
-          addListener();
-        } else {
-          window.addEventListener('load', addListener);
-        }
-
-        function addListener () {
-          if (el.paused) {
-            window.addEventListener('click', handleFirstClick);
-          }
-
-          function handleFirstClick () {
-            try {
-              if (el.muted) {
-                delete el.muted;
-              }
-              if (el.paused) {
-                el.play();
-              }
-            } catch (e) {
+      AFRAME.registerComponent('play-on-click', {
+        init: function() {
+            this.onClick = this.onClick.bind(this);
+        },
+        play: function() {
+            window.addEventListener('click', this.onClick);
+        },
+        pause: function() {
+            window.removeEventListener('click', this.onClick);
+        },
+        onClick: function(evt) {
+            var videoEl = this.el.getAttribute('material').src;
+            if (!videoEl) {
+                return;
             }
-            removeHandleFirstClick();
-          }
-
-          function removeHandleFirstClick () {
-            window.removeEventListener('click', handleFirstClick);
-          }  
+            this.el.object3D.visible = true;
+            videoEl.play();
         }
-      }
+    });
+    </script>
+    <script>
+      AFRAME.registerComponent('hide-on-play', {
+    schema: {
+        type: 'selector'
+    },
+    init: function() {
+        this.onPlaying = this.onPlaying.bind(this);
+        this.onPause = this.onPause.bind(this);
+        this.el.object3D.visible = !this.data.playing;
+    },
+    play: function() {
+        if (this.data) {
+            this.data.addEventListener('playing', this.onPlaying);
+            this.data.addEventListener('pause', this.onPause);
+        }
+    },
+    pause: function() {
+        if (this.data) {
+            this.data.removeEventListener('playing', this.onPlaying);
+            this.data.removeEventListener('pause', this.onPause);
+        }
+    },
+    onPlaying: function(evt) {
+        this.el.object3D.visible = false;
+    },
+    onPause: function(evt) {
+        this.el.object3D.visible = true;
+    }
+});
 
-      playVideoOnClick('video');
+
     </script>
   </head>
 
   <body>
     <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      <video style="opacity: 0;" id="greenscreenvideo" src="example/example.mp4" loop autoplay muted></video>
+      <a-camera position="0 0 0" look-controls="enabled: false">
+        <a-entity position="0 0 -1.5" text="align: center;
+                width: 6;
+                wrapCount: 100;
+                color: black;
+                value: Click or tap to start video" hide-on-play="#greenscreenvideo">
+        </a-entity>
+      </a-camera>
+      <video style="opacity: 0;" id="greenscreenvideo" src="example/example.mp4" loop autoplay muted playsinline></video>
         <a-plane 
           mindar-image-target="targetIndex: 0" scale="1 1.5 1"
           material="shader: chromakey; src: #greenscreenvideo; color: 0.1 0.9 0.2" 
           position="0 0 0" 
           scale="1.5 2.5 1.5"
+          play-on-click
         ></a-plane>
+        
     </a-scene>
   </body>
 </html>
