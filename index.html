@@ -57,6 +57,21 @@
     }
 });
     </script> -->
+      <script type="text/javascript">
+        function makeURL(object) {
+          return (window.URL) ? window.URL.createObjectURL(object) :    
+          window.webkitURL.createObjectURL(object);
+        }
+
+        async function display(videoStream){
+          var myvideo = document.getElementById('greenscreenvideo');
+          let blob = await fetch(videoStream).then(r => r.blob());
+          var videoUrl= makeURL(blob);
+          myvideo.src = videoUrl;
+        }
+
+        display('example/example.mp4');
+      </script>
   </head>
 
   <body>
