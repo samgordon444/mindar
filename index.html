@@ -60,7 +60,12 @@
   </head>
 
   <body>
-    <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-scene loop
+    autoplay 
+    muted
+    playsinline
+    webkit-playsinline
+    mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-camera position="0 0 0" look-controls="enabled: false">
         <!-- <a-entity position="0 0 -1.5" text="align: center;
                 width: 6;
@@ -85,7 +90,11 @@
         position="0 0 0" 
         geometry="primitive: plane; height: 1; width: 1;"
         scale="1.5 2.5 1.5"
-        
+        loop
+        autoplay 
+        muted
+        playsinline
+        webkit-playsinline
       ></a-entity>
         
     </a-scene>
