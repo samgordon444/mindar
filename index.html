@@ -57,21 +57,7 @@
     }
 });
     </script> -->
-      <script type="text/javascript">
-        function makeURL(object) {
-          return (window.URL) ? window.URL.createObjectURL(object) :    
-          window.webkitURL.createObjectURL(object);
-        }
 
-        async function display(videoStream){
-          var myvideo = document.getElementById('greenscreenvideo');
-          let blob = await fetch(videoStream).then(r => r.blob());
-          var videoUrl= makeURL(blob);
-          myvideo.src = videoUrl;
-        }
-
-        display('example/example.mp4');
-      </script>
   </head>
 
   <body>
@@ -84,27 +70,12 @@
                 value: Click or tap to start video" hide-on-play="#greenscreenvideo">
         </a-entity> -->
       </a-camera>
-      <!-- <a-assets>
-        <video 
-        id="greenscreenvideo" 
-        src="example/example.mp4" 
-        loop
-        autoplay 
-        muted="muted"
-        playsinline="playsinline"
-        webkit-playsinline="webkit-playsinline"></video>
-      </a-assets> -->
       <a-entity 
         mindar-image-target="targetIndex: 0" scale="1 1.5 1"
         material="shader: chromakey; src: #greenscreenvideo; color: 0.1 0.9 0.2" 
         position="0 0 0" 
-        geometry="primitive: plane; height: 1; width: 1;"
+        geometry="primitive: plane; height: 1.5; width: 1;"
         scale="1.5 2.5 1.5"
-        loop
-        autoplay 
-        muted
-        playsinline
-        webkit-playsinline
       ></a-entity>
         
     </a-scene>
