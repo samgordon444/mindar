@@ -7,15 +7,12 @@
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
     
-    <script type="text/javascript">
-			window.onload = function(){
-				var player = document.getElementById("greenscreenvideo");
-				var play = document.getElementById("play");
-				play.addEventListener("click",function(){
-					player.play();
-				});
-			}
-		</script>
+    <script>
+      window.addEventListener('click', function () {
+      var v = document.querySelector('#greenscreenvideo');
+      v.play();
+      });
+      </script>
   </head>
 
   <body>
