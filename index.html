@@ -5,6 +5,42 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
+    <script>
+      function playVideoOnClick ('#greenscreenvideo') {
+        el = document.querySelector('#greenscreenvideo');
+
+        if (el) {
+          addListener();
+        } else {
+          window.addEventListener('load', addListener);
+        }
+
+        function addListener () {
+          if (el.paused) {
+            window.addEventListener('click', handleFirstClick);
+          }
+
+          function handleFirstClick () {
+            try {
+              if (el.muted) {
+                delete el.muted;
+              }
+              if (el.paused) {
+                el.play();
+              }
+            } catch (e) {
+            }
+            removeHandleFirstClick();
+          }
+
+          function removeHandleFirstClick () {
+            window.removeEventListener('click', handleFirstClick);
+          }  
+        }
+      }
+      
+      playVideoOnClick('video');
+    </script>
   </head>
 
   <body>
