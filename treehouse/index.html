@@ -15,10 +15,11 @@
       </a-assets>
         <a-entity mindar-image-target="targetIndex: 0">
 
-          <a-entity width="1" height="1" position="0 0 0"
-            animation="property: plane.opacity; to: 0; loop: true; dur: 2000; dir: alternate">
+          <a-entity width="1" height="1" position="0 0 0">
           
-            <a-plane material="src: url(treehouse-overlay.png); transparent: true"></a-plane>
+            <a-plane material="src: url(treehouse-overlay.png); transparent: true"
+            animation="property: material.opacity; to: 0; loop: true; dur: 2000; dir: alternate"
+            ></a-plane>
             
         </a-entity>
 
