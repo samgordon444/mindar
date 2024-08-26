@@ -9,15 +9,18 @@
   </head>
 
   <body>
-    <p>treehouse overlay</p>
+    <p>fixed treehouse</p>
     <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      <a-assets>
-        <a-asset-item id="rayvic" src="treehouse/treehouse-overlay.png"></a-asset-item>
-      </a-assets>
+      
         <a-entity mindar-image-target="targetIndex: 0">
-          <a-gltf-model src="#rayvic" scale="1 1 1" position="0 0 0"></a-gltf-model>
+          <a-entity width="1" height="1" position="0 0 0">
+            <a-plane material="src: url(treehouse/treehouse-overlay.png); transparent: true"
+            animation="property: material.opacity; to: 0; loop: true; dur: 2000; dir: alternate"
+            ></a-plane>  
         </a-entity>
+      </a-entity>
+
     </a-scene>
   </body>
 </html>
