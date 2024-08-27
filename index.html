@@ -9,8 +9,8 @@
   </head>
 
   <body>
-    <p>mindar doc method</p>
-    <a-scene mindar-image="imageTargetSrc: ./targets.mind; filterMinCF:0.0001; filterBeta: 0.001" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <p>putting it all together</p>
+    <a-scene mindar-image="imageTargetSrc: ./targets.mind; filterMinCF:0.0001; filterBeta: 0.001" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" renderer="colorManagement: true, physicallyCorrectLights">
       <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: ${customFields.libVersion}; objects: .clickable"></a-camera>
       <a-assets>
         <!-- Preload the image -->
@@ -18,12 +18,23 @@
         <img id="dumbledoreLight" src="dumbledore-light.png">
       </a-assets>
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-box id="example-plane" class="clickable" position="0 0 0" rotation="0 45 0" color="#4CC3D9"
-           event-set__click="_event: click; color: #8FF7FF"></a-box>
-        <!-- <a-plane id="example-plane" src="#dumbledoreDark" width="1" height="1" position="0 0 0"></a-plane> -->
+        <!-- <a-box id="example-plane" class="clickable" position="0 0 0" rotation="0 45 0" color="#4CC3D9"
+           event-set__click="_event: click; color: #8FF7FF"></a-box> -->
+        <a-plane id="example-plane" class="clickable" src="#dumbledoreDark" width="1" height="1" position="0 0 0"></a-plane>
       </a-entity>
 
     </a-scene>
+    <script>
+      const examplePlane = document.querySelector('#example-plane');
+      let isImage1 = true; // Track which image is currently displayed
+
+      examplePlane.addEventListener("click", event => {
+        Toggle the image source
+        const newSrc = isImage1 ? '#dumbledoreLight' : '#dumbledoreDark';
+        plane.setAttribute('material', 'src', newSrc);
+        isImage1 = !isImage1; // Update the tracker
+      });
+    </script>
     <!-- <script>
       document.addEventListener('DOMContentLoaded', () => {
             const plane = document.querySelector('#example-plane');
