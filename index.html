@@ -1,24 +1,39 @@
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindAR Image Swap on Tap</title>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
-  </head>
+</head>
+<body>
+    <a-scene mindar="imageTargetSrc: target.mind; autoStart: true;" embedded color-space="sRGB" vr-mode-ui="false" device-orientation-permission-ui="auto">
+        <a-assets>
+          <img id="dumbledoreDark" src="dumbledore-dark.png">
+          <img id="dumbledoreLight" src="dumbledore-light.png">
+        </a-assets>
 
-  <body>
-    <p>no mindar 2</p>
-    <a-scene>
-      <a-camera position="0 0 0"></a-camera>
-      <a-assets>
-        <img id="dumbledoreDark" src="dumbledore-dark.png">
-        <img id="dumbledoreLight" src="dumbledore-light.png">
-      </a-assets>
-        <a-plane src="#dumbledoreDark" width=".85" height="1.1" position="4 4 0"
-        event-set__click="_event: click; material.src: #dumbledoreLight"
-        ></a-plane>
+        <a-camera position="0 0 0"></a-camera>
 
+        <a-entity mindar-image-target="targetIndex: 0">
+            <a-plane id="imagePlane" src="#dumbledoreDark" width="3" height="2" position="0 0 0"></a-plane>
+        </a-entity>
     </a-scene>
-  </body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const plane = document.querySelector('#imagePlane');
+            let isImage1 = true; // Track which image is currently displayed
+
+            plane.addEventListener('click', () => {
+                // Toggle the image source
+                const newSrc = isImage1 ? '#dumbledoreLight' : '#dumbledoreDark';
+                plane.setAttribute('material', 'src', newSrc);
+                isImage1 = !isImage1; // Update the tracker
+            });
+        });
+    </script>
+</body>
 </html>
