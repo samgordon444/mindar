@@ -17,15 +17,13 @@
         <img id="dumbledoreDark" src="dumbledore-dark.png">
         <img id="dumbledoreLight" src="dumbledore-light.png">
       </a-assets>
-        <a-entity mindar-image-target="targetIndex: 0">
-          <a-entity width="1" height="1" position="0 0 0">
-            <a-plane id="imagePlane" 
-              material="src: #dumbledoreDark; transparent: true" 
-              event-set__click="_event: click; material.src: #dumbledoreLight"
-              event-set__click__2="_event: click; material.src: #dumbledoreDark"
-              event-set__click__3="_event: click; _target: #imagePlane; material.src: #dumbledoreDark"
-            >
-            </a-plane>  
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-entity width="1" height="1" position="0 0 0">
+          <a-plane 
+            material="src: #dumbledoreDark;" 
+            event-set__click="_event: click; material.src: #dumbledoreLight"
+          >
+          </a-plane>  
         </a-entity>
       </a-entity>
 
